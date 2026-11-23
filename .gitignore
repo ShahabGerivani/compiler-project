@@ -1,0 +1,28 @@
+# Local CMake build directories and in-source build artifacts
+/build/
+/build-*/
+/cmake-build-*/
+/CMakeCache.txt
+/CMakeFiles/
+/cmake_install.cmake
+/compile_commands.json
+/CMakeUserPresets.json
+
+# Compiled C++ outputs
+*.o
+*.obj
+*.a
+*.lib
+*.exe
+*.dll
+*.so
+*.dylib
+*.pdb
+/lexer_demo
+
+# Local IDE and OS files
+/.vs/
+/.idea/
+*.user
+Thumbs.db
+.DS_Store
