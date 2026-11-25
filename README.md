@@ -18,3 +18,19 @@ Build the lexer library with CMake:
 cmake -S . -B build
 cmake --build build
 ```
+
+## Parser
+
+Link against the CMake target `bminor_parser`, which also links the lexer:
+
+```cpp
+#include "bminor/lexer.hpp"
+#include "bminor/parser.hpp"
+
+bminor::Lexer lexer("main: function integer () = { return 0; }", "example.bminor");
+auto result = bminor::parse(lexer.tokenize());
+// Inspect lexer.errors(), result.errors, and result.program.
+```
+
+See [the parser specification](docs/parser-spec.md) for the EBNF,
+operator precedence, AST layout, and error recovery.
