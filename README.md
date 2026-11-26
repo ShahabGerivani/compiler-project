@@ -34,3 +34,14 @@ auto result = bminor::parse(lexer.tokenize());
 
 See [the parser specification](docs/parser-spec.md) for the EBNF,
 operator precedence, AST layout, and error recovery.
+
+## Syntax highlighting
+
+Link against `bminor_highlighter` and include `bminor/highlighter.hpp`.
+Call `bminor::highlight(source, fileName)` to get sorted, non-overlapping
+highlight spans (byte offset and length) and lexer/parser diagnostics.
+Renderers can copy the gaps between spans directly from the original text.
+Function declarations and named call targets are classified using the AST.
+Other identifiers, including those in regions the parser could not recover,
+use the default identifier category. Valid comments are tracked by the lexer
+without adding them to the parser's token stream.

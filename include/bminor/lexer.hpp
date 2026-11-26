@@ -7,6 +7,11 @@
 
 namespace bminor {
 
+struct CommentSpan {
+    std::size_t offset;
+    std::size_t length;
+};
+
 // A single-pass scanner for the lexical rules in the B-Minor language.
 // Whitespace and comments are skipped; invalid input is returned as Invalid
 // tokens and also recorded in errors(), allowing callers to continue scanning.
@@ -18,6 +23,7 @@ public:
     std::vector<Token> tokenize();
 
     const std::vector<LexicalError>& errors() const noexcept { return errors_; }
+    const std::vector<CommentSpan>& comments() const noexcept { return comments_; }
 
 private:
     bool atEnd() const noexcept;
@@ -35,6 +41,7 @@ private:
     std::size_t line_ = 1;
     std::size_t column_ = 1;
     std::vector<LexicalError> errors_;
+    std::vector<CommentSpan> comments_;
 };
 
 }  // namespace bminor

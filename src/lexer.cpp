@@ -159,7 +159,9 @@ void Lexer::skipTrivia() {
         }
 
         if (peek() == '/' && peek(1) == '/') {
+            const auto start = position_;
             while (!atEnd() && peek() != '\n' && peek() != '\r') advance();
+            comments_.push_back({start, position_ - start});
             continue;
         }
 
@@ -180,6 +182,7 @@ void Lexer::skipTrivia() {
             }
             advance();
             advance();
+            comments_.push_back({start.offset, position_ - start.offset});
             continue;
         }
         return;
