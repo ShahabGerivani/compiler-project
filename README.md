@@ -40,8 +40,22 @@ operator precedence, AST layout, and error recovery.
 Link against `bminor_highlighter` and include `bminor/highlighter.hpp`.
 Call `bminor::highlight(source, fileName)` to get sorted, non-overlapping
 highlight spans (byte offset and length) and lexer/parser diagnostics.
-Renderers can copy the gaps between spans directly from the original text.
+Both renderers copy the gaps between spans directly from the original text.
 Function declarations and named call targets are classified using the AST.
 Other identifiers, including those in regions the parser could not recover,
 use the default identifier category. Valid comments are tracked by the lexer
 without adding them to the parser's token stream.
+
+Include `bminor/render.hpp` and pass the same source text to the renderers:
+
+```cpp
+const std::string source = "main: function integer () = { return 0; }";
+const auto highlighted = bminor::highlight(source, "example.bminor");
+const auto terminal = bminor::renderAnsi(source, highlighted.spans);
+const auto html = bminor::renderHtml(source, highlighted.spans);
+```
+
+Print the ANSI string in an ANSI-capable terminal or save the HTML string as
+a standalone UTF-8 file. The HTML includes its stylesheet and escapes source
+text before placing it in the code block. Both functions reject spans that
+overlap, are out of order, or fall outside the source.

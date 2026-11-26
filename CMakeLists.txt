@@ -8,7 +8,7 @@ target_compile_features(bminor_lexer PUBLIC cxx_std_17)
 add_library(bminor_parser src/parser.cpp)
 target_link_libraries(bminor_parser PUBLIC bminor_lexer)
 
-add_library(bminor_highlighter src/highlighter.cpp)
+add_library(bminor_highlighter src/highlighter.cpp src/render.cpp)
 target_link_libraries(bminor_highlighter PUBLIC bminor_parser)
 
 if(MSVC)
