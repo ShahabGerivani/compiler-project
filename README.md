@@ -59,3 +59,19 @@ Print the ANSI string in an ANSI-capable terminal or save the HTML string as
 a standalone UTF-8 file. The HTML includes its stylesheet and escapes source
 text before placing it in the code block. Both functions reject spans that
 overlap, are out of order, or fall outside the source.
+
+## Command line
+
+On Windows with MinGW, build and run from the project root:
+
+```powershell
+cmake -S . -B build-mingw -G "MinGW Makefiles" -DCMAKE_CXX_COMPILER=g++
+cmake --build build-mingw
+.\build-mingw\bminor.exe --ansi example.bminor
+.\build-mingw\bminor.exe --html -o example.html example.bminor
+```
+
+ANSI is the default format. Without `-o`, the result goes to stdout.
+Diagnostics go to stderr; lexical or syntax errors still produce highlighted
+output and return exit code 1. Argument and file errors return 2; success
+returns 0. Use `--help` to see the command syntax.

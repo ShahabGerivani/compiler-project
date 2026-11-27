@@ -11,6 +11,9 @@ target_link_libraries(bminor_parser PUBLIC bminor_lexer)
 add_library(bminor_highlighter src/highlighter.cpp src/render.cpp)
 target_link_libraries(bminor_highlighter PUBLIC bminor_parser)
 
+add_executable(bminor src/main.cpp)
+target_link_libraries(bminor PRIVATE bminor_highlighter)
+
 if(MSVC)
     target_compile_options(bminor_lexer PRIVATE /W4)
     target_compile_options(bminor_parser PRIVATE /W4)
