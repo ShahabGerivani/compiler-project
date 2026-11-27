@@ -1,0 +1,12 @@
+square: function integer (value: integer) = {
+    return value * value;
+}
+
+main: function integer () = {
+    values: array [3] integer = {1, 2, 3};
+    index: integer;
+    for (index = 0; index < 3; index++) {
+        print "Square: ", square(values[index]), "\n";
+    }
+    return 0;
+}
