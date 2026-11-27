@@ -75,3 +75,16 @@ ANSI is the default format. Without `-o`, the result goes to stdout.
 Diagnostics go to stderr; lexical or syntax errors still produce highlighted
 output and return exit code 1. Argument and file errors return 2; success
 returns 0. Use `--help` to see the command syntax.
+
+For a manual check of error reporting and recovery, try the files in
+`examples/invalid/`. Each has one intentional mistake:
+an unknown character, an unterminated string or block comment, a missing
+semicolon, or a missing initializer expression.
+
+```powershell
+.\build-mingw\bminor.exe --html -o invalid.html examples/invalid/missing-semicolon.bminor
+$LASTEXITCODE
+```
+
+Expect a diagnostic on stderr, exit code 1, and an HTML file that still
+contains the source, including the statement after the error.

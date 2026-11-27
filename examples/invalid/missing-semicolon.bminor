@@ -1,0 +1,4 @@
+main: function integer () = {
+    print "missing semicolon"
+    return 0;
+}

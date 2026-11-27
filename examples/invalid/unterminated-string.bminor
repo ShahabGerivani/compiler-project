@@ -1,0 +1,4 @@
+main: function integer () = {
+    print "missing closing quote
+    return 0;
+}

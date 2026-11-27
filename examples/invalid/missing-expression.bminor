@@ -1,0 +1,2 @@
+broken: integer = ;
+remaining: integer = 1;
